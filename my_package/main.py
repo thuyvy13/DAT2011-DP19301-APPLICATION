@@ -1,5 +1,6 @@
 """
 File này để import các module và chạy chương trình.
+Member config module in this
 """
 
 from my_package.student import Student
