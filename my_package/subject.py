@@ -24,3 +24,14 @@ class Subject:
         self.description = description
         self.credits = credits
         self.instructor = instructor
+
+
+        def addSubject(self, subject):
+            self.subjects.append(subject)
+            print(f"Môn học {subject.name} đã được thêm vào danh sách môn học")
+
+        def removeSubject(self, subject):
+            self.subjects.remove(subject)
+            print(f"Môn học {subject.name} đã được xóa khỏi danh sách môn học")
+
+        
