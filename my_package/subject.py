@@ -29,6 +29,7 @@ class Subject:
         def addSubject(self, subject):
             self.subjects.append(subject)
             print(f"Môn học {subject.name} đã được thêm vào danh sách môn học")
+            print("cho nay la cho can sua")
 
         def removeSubject(self, subject):
             self.subjects.remove(subject)
