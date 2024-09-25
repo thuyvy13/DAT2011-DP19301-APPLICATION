@@ -5,7 +5,7 @@ Member config module in this
 
 from score import Score
 from grade_point import GradePoint
-from student import Student
+from student import menu_module_3
 from subject import Subject
 from semester import Semester
 from utils import get_number_input
@@ -17,7 +17,7 @@ def menu():
     print("QUẢN LÝ ĐIỂM SỐ")
     print("1. Quản lý học kỳ")
     print("2. Quản lý môn học")
-    print("3. Quản lý ")
+    print("3. Quản lý sinh viên")
     print("4. Thêm đầu điểm")
     print("5. Thêm điểm số")
     print("0. Thoát")   
@@ -53,21 +53,7 @@ def insert_subject():
     subject = Subject(subject_id, name, description, credits, instructor, subject)
     
 def insert_student():
-    """
-        student_id: mã sinh viên
-        name: tên sinh viên
-        birth_date: ngày sinh của sinh viên
-        email: email của sinh viên
-        class_name: lớp của sinh viên
-        department: bộ môn của sinh viên
-    """
-    student_id = get_number_input("Nhập mã số sinh viên: ")
-    name = get_str_input("Nhập tên sinh viên: ")
-    birth_date = get_date_input("Nhập ngày sinh sinh viên: ")
-    email = get_email_input("Nhập email sinh viên: ")
-    class_name = get_str_input("Nhập lớp sinh viên: ")
-    department = get_str_input("Nhập bộ môn sinh viên: ")
-    student = Student(student_id, name, birth_date, email, class_name, department)
+    menu_module_3()
     
 def insert_grade_point():
     """
@@ -108,7 +94,7 @@ while True:
     elif choice == "2":
         insert_subject()
     elif choice == "3":
-        insert_student()
+        menu_module_3()
     elif choice == "4":
         insert_grade_point()
     elif choice == "5":
