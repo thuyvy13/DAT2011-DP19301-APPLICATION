@@ -26,42 +26,35 @@ Bao gồm các thuộc tính:
 #         self.notes = notes
 # 5. Học kỳ(Mã, Tên, Ngày bắt đầu, Ngày kết thúc, Ghi chú)
 
-def hien_thi1():
-    print("hiển thị danh sách học kì")
+ds = [("Học kỳ 1", 2022), ("Học kỳ 2", 2022), ("Học kỳ 1", 2023)]
+def hien_thi1(hienthi):
+    print("danh sach hoc ki la")
 
-def tim_kiem2():
-    print("Tìm kiếm học kỳ ")
-    # tk = input("moi nhap thong tin can tim: ")
-    # if tk in ds :
-    #     print(f"thong tin tim kiem {tk} co trong danh sach: {ds} ")
-    # else :
-    #     print(f"thong tin tim kiem {tk} khong co trong danh sach: {ds}")
-def them_moi3():
-    print("Thêm mới học kỳ ")
-    # ten_hoc_ky = str(input("mời nhập học kì: "))
-    # nam_hoc = int(input("mời nhập năm học kì: "))
-    # ds.append((ten_hoc_ky, nam_hoc))
-    # print(f"Đã thêm học kỳ: {ten_hoc_ky} - Năm học: {nam_hoc}")
+def tim_kiem2(tk,ds):
+    tk = input("moi nhap thong tin can tim: ")
+    if tk in ds :
+        print(f"thong tin tim kiem {tk} co trong danh sach: {ds} ")
+    else :
+        print(f"thong tin tim kiem {tk} khong co trong danh sach: {ds}")
+def them_moi3(ten_hoc_ky, nam_hoc):
+    ten_hoc_ky = str(input("mời nhập học kì: "))
+    nam_hoc = int(input("mời nhập năm học kì: "))
+    ds.append((ten_hoc_ky, nam_hoc))
+    print(f"Đã thêm học kỳ: {ten_hoc_ky} - Năm học: {nam_hoc}")
+
 def cap_nhat4():
-    print("cập nhật thông tin ")
+    print("cap nhat thong tin ")
 
 def xoa_tt5():
-    print("xóa thông tin")
+    print("xoa tt")
 
 def kiem_tra6():
-    print("Kiểm tra học kỳ đã kết thúc hay chưa  ")
+    print("cap nhat thong tin ")
 
 def tinh_tong7():
-    print("Tính tổng số học kỳ")
+    print("tinh tong")
 
-def thong_ke8():
-    print("Thống kê số lượng học kỳ trong một năm")
 
-def ht_ghi_chu9():
-    print("Hiển thị tất cả ghi chú  ")
-
-def nhac_nho10():
-    print("Nhắc nhở sự kiện trong học kỳ ")
 
 
 
@@ -78,32 +71,29 @@ def hien_thi_menu():
         print("  ||     8. Thống kê số lượng học kỳ trong một năm ||")
         print("  ||     9. Hiển thị tất cả ghi chú                ||")
         print("  ||     10. Nhắc nhở sự kiện trong học kỳ         ||")
-        print("  ||     0. thoát chương trình.                    ||")
         print("==========================================================")
         luaChon = int(input("Mời chọn chức năng (1-10) : "))
-        if luaChon == 0 :
-            print("Thoát chương trình")
-            break
-        elif luaChon == 1 :
-            hien_thi1()
+        if luaChon == 1 :
+            print(hien_thi1())
         elif luaChon == 2 :
-            tim_kiem2()
+            print(tim_kiem2())
         elif luaChon == 3 :
-            them_moi3()
+            print(them_moi3())
         elif luaChon == 4 :
-            cap_nhat4()
+            print("4. Cập nhật học kỳ")
         elif luaChon == 5 :
-            xoa_tt5()
+            print("5. Xóa học kỳ ")
         elif luaChon == 6 :
-            kiem_tra6()
+            print("6. Kiểm tra học kỳ đã kết thúc hay chưa")
         elif luaChon == 7 :
-            tinh_tong7()
+            print("7. Tính tổng số học kỳ")
         elif luaChon == 8 :
-            thong_ke8()
+            print("8. Thống kê số lượng học kỳ trong một năm")
         elif luaChon == 9 :
-            ht_ghi_chu9()
+            print("9. Hiển thị tất cả ghi chú")
         elif luaChon == 10 :
-            nhac_nho10()
+            print("10. Nhắc nhở sự kiện trong học kỳ")
         else :
             print("Mời bạn chọn lại (1-10)")
 
+hien_thi_menu()

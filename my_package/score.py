@@ -81,7 +81,7 @@ def delete_scores():
     if not found:
         print(f"Không tìm thấy điểm số với mã sinh viên {student_id}")
             
-def menu():
+def menu_module_1():
     while True:
         print("+" + "-" * 42 + "+")
         print("|" + " QUẢN LÝ ĐIỂM SỐ SINH VIÊN ".center(42) + "|")
@@ -128,7 +128,6 @@ def menu():
         else:
             print("Lựa chọn không hợp lệ. Vui lòng chọn lại.")
 
-menu()
 
 
 
