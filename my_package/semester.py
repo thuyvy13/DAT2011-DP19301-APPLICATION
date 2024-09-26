@@ -107,4 +107,3 @@ def hien_thi_menu():
         else :
             print("Mời bạn chọn lại (1-10)")
 
-hien_thi_menu()
