@@ -7,7 +7,7 @@ from score import Score
 from grade_point import GradePoint
 from student import menu_module_3
 from subject import Subject
-from semester import Semester
+from semester import hien_thi_menu
 from utils import get_number_input
 from utils import get_str_input
 from utils import get_date_input 
@@ -98,7 +98,7 @@ while True:
     elif choice == "4":
         insert_grade_point()
     elif choice == "5":
-        insert_score()
+        hien_thi_menu()
     elif choice == "0":
         print("Thoát chương trình")
         break
