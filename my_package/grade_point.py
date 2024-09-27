@@ -95,34 +95,34 @@ def GradePoint():
             swap = int(input("Vui lòng chọn chương trình (1-10): "))
         except ValueError:
             print("Vui lòng nhập một số nguyên trong khoang (1-10).")
+            continue 
             
-        if swap == 0:
-            if thoat_chuong_trinh():
-                print("Cam on ban da su dung chuong trinh")
-                break
-            else :
-                print("Chuong trinh duoc tiep tuc")
-        elif swap == 1:
-            hien_thi_danh_sach()
-        elif swap == 2:
-            Them_vao_dau_diem()
-        elif swap == 3:
-            Xoa_Dau_diem()
-        elif swap == 4:
-            Cap_nhat_dau_diem()
-        elif swap == 5:
-            Tim_kiem_Loc()
-        elif swap == 6:
-            Kiem_tra_dau_diem()
-        elif swap == 7:
-            kiem_tra()
-        elif swap == 8:
-            Thong_ke()
-        elif swap == 9:
-            kiem_tra_hop_le()
-        elif swap == 10:
-            Xuat_file()
-        else:
-            print("Lựa chọn không hợp lệ, vui lòng thử lại.")
-
-GradePoint()
+        match swap:
+            case 0:
+                if thoat_chuong_trinh():
+                    print("Cam on ban da su dung chuong trinh")
+                    break
+                else :
+                    print("Chuong trinh duoc tiep tuc")
+            case 1:
+                hien_thi_danh_sach()
+            case 2:
+                Them_vao_dau_diem()
+            case 3:
+                Xoa_Dau_diem()
+            case 4:
+                Cap_nhat_dau_diem()
+            case 5:
+                Tim_kiem_Loc()
+            case 6:
+                Kiem_tra_dau_diem()
+            case 7:
+                kiem_tra()
+            case 8:
+                Thong_ke()
+            case 9:
+                kiem_tra_hop_le()
+            case 10:
+                Xuat_file()
+            case _:
+                print("Lựa chọn không hợp lệ, vui lòng thử lại.")

@@ -63,6 +63,13 @@ def ht_ghi_chu9():
 def nhac_nho10():
     print("Nhắc nhở sự kiện trong học kỳ ")
 
+def xac_nhan():
+    xn = input("Bạn có chắc chắn muốn thực hiện thao tác này? (Y/N): ").upper()
+    if xn == "N":
+        hien_thi_menu()
+    elif xn == "Y":
+        print("Thoát chương trình")
+
 
 
 def hien_thi_menu():
@@ -82,29 +89,68 @@ def hien_thi_menu():
         print("==========================================================")
         luaChon = int(input("Mời chọn chức năng (1-10) : "))
         if luaChon == 0 :
-            print("Thoát chương trình")
+            xac_nhan()
             break
         elif luaChon == 1 :
-            hien_thi1()
+            xn = input("Bạn có chắc chắn muốn thực hiện thao tác này? (Y/N): ").upper()
+            if xn == "N":
+                hien_thi_menu()
+            elif xn == "Y":
+                hien_thi1()
         elif luaChon == 2 :
-            tim_kiem2()
+            xn = input("Bạn có chắc chắn muốn thực hiện thao tác này? (Y/N): ").upper()
+            if xn == "N":
+                hien_thi_menu()
+            elif xn == "Y":
+                tim_kiem2()
         elif luaChon == 3 :
-            them_moi3()
+            xn = input("Bạn có chắc chắn muốn thực hiện thao tác này? (Y/N): ").upper()
+            if xn == "N":
+                hien_thi_menu()
+            elif xn == "Y":
+                them_moi3()
         elif luaChon == 4 :
-            cap_nhat4()
+            xn = input("Bạn có chắc chắn muốn thực hiện thao tác này? (Y/N): ").upper()
+            if xn == "N":
+                hien_thi_menu()
+            elif xn == "Y":
+                cap_nhat4()
         elif luaChon == 5 :
-            xoa_tt5()
+            xn = input("Bạn có chắc chắn muốn thực hiện thao tác này? (Y/N): ").upper()
+            if xn == "N":
+                hien_thi_menu()
+            elif xn == "Y":
+                xoa_tt5()
         elif luaChon == 6 :
-            kiem_tra6()
+            xn = input("Bạn có chắc chắn muốn thực hiện thao tác này? (Y/N): ").upper()
+            if xn == "N":
+                hien_thi_menu()
+            elif xn == "Y":
+                kiem_tra6()
         elif luaChon == 7 :
-            tinh_tong7()
+            xn = input("Bạn có chắc chắn muốn thực hiện thao tác này? (Y/N): ").upper()
+            if xn == "N":
+                hien_thi_menu()
+            elif xn == "Y":
+                tinh_tong7()
         elif luaChon == 8 :
-            thong_ke8()
+            xn = input("Bạn có chắc chắn muốn thực hiện thao tác này? (Y/N): ").upper()
+            if xn == "N":
+                hien_thi_menu()
+            elif xn == "Y":
+                thong_ke8()
         elif luaChon == 9 :
-            ht_ghi_chu9()
+            xn = input("Bạn có chắc chắn muốn thực hiện thao tác này? (Y/N): ").upper()
+            if xn == "N":
+                hien_thi_menu()
+            elif xn == "Y":
+                ht_ghi_chu9()
         elif luaChon == 10 :
-            nhac_nho10()
+            xn = input("Bạn có chắc chắn muốn thực hiện thao tác này? (Y/N): ").upper()
+            if xn == "N":
+                hien_thi_menu()
+            elif xn == "Y":
+                nhac_nho10()
         else :
             print("Mời bạn chọn lại (1-10)")
 
-hien_thi_menu()
