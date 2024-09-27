@@ -2,6 +2,14 @@
 File này để import các module và chạy chương trình.
 Member config module in this
 """
+import sys
+sys.stdout.reconfigure(encoding=
+sys.stdout.reconfigure(
+
+sys.stdout
+
+sys
+'utf-8')
 
 from score import Score
 from grade_point import GradePoint
@@ -12,6 +20,7 @@ from utils import get_number_input
 from utils import get_str_input
 from utils import get_date_input 
 from utils import get_email_input
+from manh import main_module4
 
 def menu():
     print("QUẢN LÝ ĐIỂM SỐ")
@@ -96,7 +105,7 @@ while True:
     elif choice == "3":
         menu_module_3()
     elif choice == "4":
-        insert_grade_point()
+        main_module4()
     elif choice == "5":
         insert_score()
     elif choice == "0":
