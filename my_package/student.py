@@ -32,35 +32,54 @@ def chuc_nang_1():
     print('Hiển thị danh sách sinh viên.')
 def chuc_nang_2():
     print('Tìm kiếm sinh viên.')
+
 def chuc_nang_3():
     print('Thêm mới sinh viên')
-    xac_nhan = input('mời nhập xác nhận(Y/N): ')
-    if xac_nhan.upper()=='Y':
-        print("Thêm mới sinh viên.")
-        # viet code trong if
-
-    else:
-        print("Thêm mới sinh viên đã bị hủy.")
+    while True:
+        xac_nhan = input('Mời nhập xác nhận (Y/N): ').upper().strip()
+        if xac_nhan == 'Y':
+            print("Đang thêm mới sinh viên...")
+            # Code xử lý thêm sinh viên ở đây
+            break
+        elif xac_nhan == 'N':
+            print("Thêm mới sinh viên đã bị hủy.")
+            break
+        elif xac_nhan == '':
+            print("Bạn chưa nhập giá trị, vui lòng nhập lại (Y/N).")
+        else:
+            print("Giá trị không hợp lệ, vui lòng nhập lại (Y/N).")
 
 def chuc_nang_4():
     print('Cập nhật thông tin sinh viên')
-    xac_nhan = input('mời nhập xác nhận(Y/N): ')
-    if xac_nhan.upper()=='Y':
-        print("Cập nhật thông tin sinh viên.")
-        # viet code trong if
-
-    else:
-        print("Cập nhật thông tin sinh viên đã bị hủy.")
+    while True:
+        xac_nhan = input('Mời nhập xác nhận (Y/N): ').upper().strip()
+        if xac_nhan == 'Y':
+            print("Đang cập nhật thông tin sinh viên...")
+            # Code xử lý cập nhật sinh viên ở đây
+            break
+        elif xac_nhan == 'N':
+            print("Cập nhật thông tin sinh viên đã bị hủy.")
+            break
+        elif xac_nhan == '':
+            print("Bạn chưa nhập giá trị, vui lòng nhập lại (Y/N).")
+        else:
+            print("Giá trị không hợp lệ, vui lòng nhập lại (Y/N).")
 
 def chuc_nang_5():
     print('Xóa sinh viên')
-    xac_nhan = input('mời nhập xác nhận(Y/N): ')
-    if xac_nhan.upper()=='Y':
-        print("Xóa sinh viên.")
-        # viet code trong if
-
-    else:
-        print("Xóa sinh viên đã bị hủy.")
+    while True:
+        xac_nhan = input('Mời nhập xác nhận (Y/N): ').upper().strip()
+        if xac_nhan == 'Y':
+            print("Đang xóa sinh viên...")
+            # Code xử lý xóa sinh viên ở đây
+            break
+        elif xac_nhan == 'N':
+            print("Xóa sinh viên đã bị hủy.")
+            break
+        elif xac_nhan == '':
+            print("Bạn chưa nhập giá trị, vui lòng nhập lại (Y/N).")
+        else:
+            print("Giá trị không hợp lệ, vui lòng nhập lại (Y/N).")
 
 def chuc_nang_6():
     print('Thống kê số lượng sinh viên theo lớp.')  
@@ -87,7 +106,7 @@ def chuc_nang_0():
 
 def menu_module_3():
     while True:
-        print('\n ------------Sinh viên------------ ')
+        print('\n ------------Quản lý sinh viên------------ ')
         print('1. Hiển thị danh sách sinh viên. ')
         print('2. Tìm kiếm sinh viên. ')
         print('3. Thêm mới sinh viên. ')
@@ -129,5 +148,5 @@ def menu_module_3():
         else :
             print('Mời bạn chọn lại chức năng (1 - 10)')
 
-print('khanlv')
-print("dat2011_gr2")
+#print('khanlv')
+#print("dat2011_gr2")
