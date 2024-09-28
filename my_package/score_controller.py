@@ -8,7 +8,6 @@ from constant_score import score_types
 scores = []   
 entered_scores = {}  
 
-# --- Helper Functions ---
 def add_scores_prompt():
     """Hiển thị tùy chọn thêm điểm hoặc quay lại menu chính."""
     if get_yes_no_input("Bạn có muốn thêm điểm số không? (Y/N): "):
@@ -16,32 +15,26 @@ def add_scores_prompt():
 
 
 def input_student_and_subject():
-    """Nhập mã sinh viên và mã môn học, kiểm tra và trả về dạng hợp lệ."""
     while True:
         student_id = get_str_input("Nhập mã sinh viên (ví dụ: PH47972): ")
         formatted_student_id = validate_and_format_student_id(student_id)
         if formatted_student_id:
             break
-
     while True:
         subject = get_str_input("Nhập tên môn học (ví dụ: DAT109 hoặc VIE103.09): ")
         formatted_subject = validate_and_format_subject(subject)
         if formatted_subject:
             break
-
     return formatted_student_id, formatted_subject
 
 
 def select_sub_type(score_type, entered_key):
-    """Chọn đầu điểm theo loại điểm và kiểm tra xem đầu điểm đã được nhập chưa."""
     available_terms = score_types[score_type].copy()  
     if not available_terms:
         print(f"Tất cả bài của {score_type} đã nhập điểm.")
         return None
-
     if entered_key in entered_scores:
         available_terms = [term for term in available_terms if term not in entered_scores[entered_key]]
-
     if not available_terms:
         print(f"Tất cả đầu điểm của {score_type} cho sinh viên này đã được nhập.")
         return None
@@ -57,7 +50,7 @@ def select_sub_type(score_type, entered_key):
             print("Lựa chọn không hợp lệ. Vui lòng nhập số trong danh sách.")
 
 
-# --- Core Functions ---
+# Fun chức năng
 def add_score():
     """Thêm điểm mới cho sinh viên và cung cấp tùy chọn tiếp tục thêm điểm."""
     formatted_student_id, formatted_subject = input_student_and_subject()
@@ -155,13 +148,11 @@ def add_score_for_existing_student(formatted_student_id, formatted_subject):
 
 
 def reset_state():
-    """Reset lại trạng thái cho một sinh viên mới, làm mới danh sách đầu điểm."""
     global entered_scores
     entered_scores = {}
 
 
 def display_scores():
-    """Hiển thị danh sách điểm số."""
     if scores:
         print("\n=== DANH SÁCH ĐIỂM SỐ ===")
         for score in scores:
@@ -173,7 +164,6 @@ def display_scores():
 
 
 def delete_score():
-    """Xóa điểm theo mã sinh viên."""
     formatted_student_id, formatted_subject = input_student_and_subject()
 
     find_scores = [score for score in scores if score['student_id'] == formatted_student_id]
@@ -200,7 +190,6 @@ def delete_score():
 
 
 def update_score():
-    """Cập nhật điểm đã có của sinh viên."""
     formatted_student_id, formatted_subject = input_student_and_subject()
     entered_key = (formatted_student_id, formatted_subject)
 
@@ -218,10 +207,9 @@ def update_score():
             else:
                 print("❌ Lựa chọn không hợp lệ. Vui lòng nhập số hợp lệ.")
 
-        # Tìm điểm tương ứng và cập nhật
         for score in scores:
             if score['student_id'] == formatted_student_id and score['subject'] == formatted_subject and score['term'] == selected_term:
-                if get_yes_no_input(f"Bạn có chắc chắn muốn cập nhật điểm cho {selected_term}?"):
+                if get_yes_no_input(f"Bạn có chắc chắn muốn cập nhật điểm cho {selected_term}? (Y/N)"):
                     score['date'] = get_date_input("Nhập ngày mới (DD/MM/YYYY): ")
                     score['score'] = get_score_input("Nhập điểm mới (từ 0 đến 10): ")
                     print(f"✅ Cập nhật điểm cho {selected_term} thành công!")
@@ -231,7 +219,6 @@ def update_score():
 
 
 def search_score_by_student_id():
-    """Tìm kiếm điểm theo mã sinh viên."""
     while True:
         formatted_student_id, _ = input_student_and_subject()
 

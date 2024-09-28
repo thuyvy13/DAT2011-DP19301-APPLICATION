@@ -3,7 +3,6 @@ from score_controller import (
 )
 
 def menu_controller():
-    """Controller chính để điều khiển các chức năng."""
     while True:
         print("\n" + "=" * 40)
         print("    📝  QUẢN LÝ ĐIỂM SỐ SINH VIÊN  📝")
@@ -28,7 +27,7 @@ def menu_controller():
             if choice == 1:
                 display_scores()
             elif choice == 2:
-                search_score_by_student_id()  # Gọi hàm tìm kiếm điểm
+                search_score_by_student_id()  
             elif choice == 3:
                 add_score()  
             elif choice == 4:
@@ -47,7 +46,7 @@ def menu_controller():
                 feat_incomplete()
             elif choice == 0:
                 print("Đã thoát khỏi chương trình.")
-                break
+                return
             else:
                 print("❌ Lựa chọn không hợp lệ. Vui lòng nhập số từ 0 đến 5.")
         else:

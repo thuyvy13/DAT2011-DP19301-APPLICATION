@@ -1,7 +1,6 @@
 import sys
 import os
 
-# Thêm thư mục hiện tại vào sys.path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from score import menu_controller
 from grade_point import GradePoint
@@ -9,7 +8,21 @@ from student import menu_module_3
 from manh import main_module4
 from semester import hien_thi_menu
 
+def confirm_exit():
+    """Hàm yêu cầu xác nhận trước khi thoát chương trình."""
+    while True:
+        confirmation = input("❓ Bạn có chắc chắn muốn thoát? (y/n): ").strip().lower()
+        if confirmation == 'y':
+            print("🚪 Thoát chương trình.")
+            return True
+        elif confirmation == 'n':
+            return False
+        else:
+            print("❌ Vui lòng chỉ nhập 'y' (có) hoặc 'n' (không).")
+
+
 def menu():
+    """Hiển thị menu chính."""
     print("\n+------------------------------------------+")
     print("|        📝  QUẢN LÝ ĐIỂM SỐ SINH VIÊN      |")
     print("+------------------------------------------+")
@@ -37,16 +50,17 @@ def insert_semester():
     hien_thi_menu()
 
 def validate_choice(input_value):
-    """Hàm kiểm tra xem giá trị nhập vào có phải là số hợp lệ không."""
-    if input_value.isdigit():
-        return int(input_value)
-    else:
-        return None
+    """Hàm kiểm tra xem giá trị nhập vào có phải là 1 số duy nhất từ 0 đến 5 không."""
+    if len(input_value) == 1 and input_value.isdigit():
+        num = int(input_value)
+        if 0 <= num <= 5:
+            return num
+    return None
 
 def print_error_message():
-    """In ra thông báo lỗi khi nhập giá trị không hợp lệ."""
-    print("\n❌ Lỗi: Lựa chọn không hợp lệ. Vui lòng chỉ nhập các số từ 0 đến 5.")
-    print("📌 Lưu ý: Không được nhập ký tự chữ, ký tự đặc biệt hoặc khoảng trắng!")
+    """In ra thông báo lỗi khi lựa chọn không hợp lệ."""
+    print("\n❌ Lỗi: Vui lòng chỉ nhập một số nguyên duy nhất từ 0 đến 5.")
+    print("📌 Lưu ý: Không được nhập chuỗi dài hoặc ký tự không hợp lệ!")
 
 while True:
     menu()
@@ -65,9 +79,7 @@ while True:
         elif valid_choice == 5:
             insert_semester()
         elif valid_choice == 0:
-            print("🚪 Thoát chương trình.")
-            break
-        else:
-            print_error_message()
+            if confirm_exit():
+                break
     else:
         print_error_message()
