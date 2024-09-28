@@ -50,15 +50,20 @@ def get_str_input(prompt):
 
 # Nhập ngày từ người dùng với định dạng DD/MM/YYYY
 def get_date_input(prompt):
-    """Yêu cầu người dùng nhập ngày với định dạng DD/MM/YYYY và kiểm tra tính hợp lệ."""
+    """Yêu cầu người dùng nhập ngày hiện tại với định dạng DD/MM/YYYY và kiểm tra tính hợp lệ."""
+    today = datetime.now().strftime("%d/%m/%Y")  # Lấy ngày hiện tại
+
     while True:
         user_input = input(prompt).strip()
         try:
-            date = datetime.strptime(user_input, "%d/%m/%Y")  # Kiểm tra định dạng ngày
-            return date.strftime("%d/%m/%Y")  # Trả về dạng ngày chuẩn
+            date = datetime.strptime(user_input, "%d/%m/%Y")
+            
+            if user_input == today:
+                return date.strftime("%d/%m/%Y")
+            else:
+                print(f"❌ Ngày nhập phải là ngày hiện tại ({today}). Vui lòng nhập lại.")
         except ValueError:
-            print("Ngày không hợp lệ. Vui lòng nhập theo định dạng DD/MM/YYYY.")
-
+            print(f"❌ Ngày không hợp lệ. Vui lòng nhập theo định dạng DD/MM/YYYY. Gợi ý: {today}")
 # Kiểm tra địa chỉ email
 def is_email(email):
     """Kiểm tra tính hợp lệ của địa chỉ email."""
@@ -135,8 +140,8 @@ def validate_and_format_subject(subject):
 
     # Định dạng 3 chữ cái theo sau là 3-5 ký tự số
     # Nếu có 5 ký tự số, yêu cầu phải có dấu chấm sau 3 chữ cái và 5 số
-    pattern_3_or_4_digits = r'^[A-Z]{3}\d{3,4}$'  # 3 chữ cái và 3-4 số (không có dấu chấm)
-    pattern_5_digits_with_dot = r'^[A-Z]{3}\d{3}\.\d{2}$'  # 3 chữ cái và 5 số có dấu chấm
+    pattern_3_or_4_digits = r'^[A-Z]{3}\d{3,4}$'  
+    pattern_5_digits_with_dot = r'^[A-Z]{3}\d{3}\.\d{2}$'  
 
     # Kiểm tra các trường hợp nhập hợp lệ
     if re.match(pattern_3_or_4_digits, subject):
@@ -144,7 +149,6 @@ def validate_and_format_subject(subject):
     elif re.match(pattern_5_digits_with_dot, subject):
         return subject
     else:
-        # Xác định lỗi và cung cấp thông báo phù hợp
         if len(re.findall(r'\d+', subject)) == 0:
             print("Mã môn học phải chứa ít nhất 3 ký tự số sau các chữ cái. Vui lòng nhập lại.")
         elif len(subject) > 3 and len(re.findall(r'\d+', subject)[0]) == 5 and '.' not in subject:

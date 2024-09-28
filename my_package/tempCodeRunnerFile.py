@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 while True:
     menu()
     choice = input("Chọn chức năng: ")
@@ -18,7 +17,4 @@ while True:
         break
     else:
         print("Lựa chọn không hợp lệ. Vui lòng thử lại!\n")
-        
-=======
-formatted_student_id
->>>>>>> Stashed changes
+

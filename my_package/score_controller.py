@@ -5,8 +5,8 @@ from utils_score import (
 )
 from constant_score import score_types
 
-scores = []  # Danh sách chứa điểm của sinh viên
-entered_scores = {}  # Lưu lại các đầu điểm đã nhập
+scores = []   
+entered_scores = {}  
 
 # --- Helper Functions ---
 def add_scores_prompt():
@@ -34,7 +34,7 @@ def input_student_and_subject():
 
 def select_sub_type(score_type, entered_key):
     """Chọn đầu điểm theo loại điểm và kiểm tra xem đầu điểm đã được nhập chưa."""
-    available_terms = score_types[score_type].copy()  # Sao chép trạng thái đầu điểm ban đầu
+    available_terms = score_types[score_type].copy()  
     if not available_terms:
         print(f"Tất cả bài của {score_type} đã nhập điểm.")
         return None
@@ -75,7 +75,7 @@ def add_score():
 
             if not selected_term:
                 print(f"Đầu điểm {selected_type} đã được nhập cho sinh viên {formatted_student_id} và môn {formatted_subject}.")
-                continue  # Chọn lại đầu điểm khác
+                continue  
 
             date = get_date_input("Nhập ngày nhập điểm (DD/MM/YYYY): ")
             score = get_score_input("Nhập điểm (0-10): ")
@@ -103,11 +103,9 @@ def add_score():
                 next_choice = input("Chọn một tùy chọn: ").strip()
 
                 if next_choice == '1':
-                    # Nếu chọn tiếp tục với sinh viên hiện tại, chỉ thêm đầu điểm mới
                     add_score_for_existing_student(formatted_student_id, formatted_subject)
                     break
                 elif next_choice == '2':
-                    # Nếu chọn thêm sinh viên mới, reset trạng thái và gọi lại hàm thêm sinh viên
                     add_score()
                     break
                 elif next_choice == '0':
@@ -133,7 +131,7 @@ def add_score_for_existing_student(formatted_student_id, formatted_subject):
 
             if not selected_term:
                 print(f"Đầu điểm {selected_type} đã được nhập cho sinh viên {formatted_student_id} và môn {formatted_subject}.")
-                continue  # Chọn lại đầu điểm khác
+                continue  
 
             date = get_date_input("Nhập ngày nhập điểm (DD/MM/YYYY): ")
             score = get_score_input("Nhập điểm (0-10): ")

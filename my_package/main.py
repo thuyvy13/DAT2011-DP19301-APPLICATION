@@ -1,7 +1,3 @@
-"""
-File này để import các module và chạy chương trình.
-Member config module in this
-"""
 import sys
 import os
 
@@ -10,84 +6,68 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from score import menu_controller
 from grade_point import GradePoint
 from student import menu_module_3
-from subject import Subject
+from manh import main_module4
 from semester import hien_thi_menu
-from utils import get_number_input, get_str_input
 
 def menu():
+    print("\n+------------------------------------------+")
+    print("|        📝  QUẢN LÝ ĐIỂM SỐ SINH VIÊN      |")
     print("+------------------------------------------+")
-    print("|        QUẢN LÝ ĐIỂM SỐ SINH VIÊN         |")
-    print("+------------------------------------------+")
-    print("|1. Quản lý điểm số                        |")
-    print("|2. Quản lý đầu điểm                       |")
-    print("|3. Quản lý sinh viên                      |")
-    print("|4. Quản lý môn học                        |")
-    print("|5. Quản lý học kỳ                         |")
-    print("|0. Thoát                                  |")
+    print("|1️⃣  Quản lý điểm số                        |")
+    print("|2️⃣  Quản lý đầu điểm                       |")
+    print("|3️⃣  Quản lý sinh viên                      |")
+    print("|4️⃣  Quản lý môn học                        |")
+    print("|5️⃣  Quản lý học kỳ                         |")
+    print("|0️⃣  Thoát                                  |")
     print("+------------------------------------------+")
 
 def insert_score():
-    """
-    Function to add scores.
-    """
     menu_controller()
-    
+
 def insert_grade_point():
-    """
-    Function to add grade points.
-    """
     GradePoint()
-    # grade_point_id = get_number_input("Nhập mã đầu điểm: ")
-    # name = get_str_input("Nhập tên đầu điểm: ")
-    # weight = get_number_input("Nhập trọng số của đầu điểm: ")
-    # subject = Subject()  # This needs proper subject assignment logic.
-    # classification = get_str_input("Nhập phân loại đầu điểm: ")
-    # grade_point = GradePoint(grade_point_id, name, weight, subject, classification)
-    # print("Đầu điểm đã được thêm thành công!")
 
 def insert_student():
-    """
-    Function to manage student details.
-    """
     menu_module_3()
 
 def insert_subject():
-    """
-    Function to manage subject details.
-    """
-    # subject_id = get_number_input("Nhập mã môn học: ")
-    # name = get_str_input("Nhập tên môn học: ")
-    # description = get_str_input("Nhập mô tả môn học: ")
-    # credits = get_number_input("Nhập tín chỉ môn học: ")
-    # instructor = get_str_input("Nhập giảng viên môn học: ")
-    # subject = Subject(subject_id, name, description, credits, instructor)
-    # print("Môn học đã được thêm thành công!")
+    main_module4()
 
 def insert_semester():
-    """
-    Function to manage semester details.
-    """
     hien_thi_menu()
-    
-    
+
+def validate_choice(input_value):
+    """Hàm kiểm tra xem giá trị nhập vào có phải là số hợp lệ không."""
+    if input_value.isdigit():
+        return int(input_value)
+    else:
+        return None
+
+def print_error_message():
+    """In ra thông báo lỗi khi nhập giá trị không hợp lệ."""
+    print("\n❌ Lỗi: Lựa chọn không hợp lệ. Vui lòng chỉ nhập các số từ 0 đến 5.")
+    print("📌 Lưu ý: Không được nhập ký tự chữ, ký tự đặc biệt hoặc khoảng trắng!")
 
 while True:
     menu()
-    choice = input("Chọn chức năng: ")
+    choice = input("👉 Nhập lựa chọn của bạn: ").strip()
+    valid_choice = validate_choice(choice)
 
-    if choice == "1":
-        insert_score()
-    elif choice == "2":
-        insert_grade_point()
-    elif choice == "3":
-        insert_student()
-    elif choice == "4":
-        insert_subject()
-    elif choice == "5":
-        insert_semester()
-    elif choice == "0":
-        print("Thoát chương trình")
-        break
+    if valid_choice is not None:
+        if valid_choice == 1:
+            insert_score()
+        elif valid_choice == 2:
+            insert_grade_point()
+        elif valid_choice == 3:
+            insert_student()
+        elif valid_choice == 4:
+            insert_subject()
+        elif valid_choice == 5:
+            insert_semester()
+        elif valid_choice == 0:
+            print("🚪 Thoát chương trình.")
+            break
+        else:
+            print_error_message()
     else:
-        print("Lựa chọn không hợp lệ.Hãy nhập một số nguyên dương!!!\n")
-        print("Vui lòng chọn lại từ (1 - 10): ")
+        print_error_message()
