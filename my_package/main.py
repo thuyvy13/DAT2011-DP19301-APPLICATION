@@ -32,6 +32,7 @@ def insert_grade_point():
     """
     Function to add grade points.
     """
+    GradePoint()
     # grade_point_id = get_number_input("Nhập mã đầu điểm: ")
     # name = get_str_input("Nhập tên đầu điểm: ")
     # weight = get_number_input("Nhập trọng số của đầu điểm: ")
