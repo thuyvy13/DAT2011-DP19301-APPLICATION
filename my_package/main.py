@@ -2,8 +2,12 @@
 File này để import các module và chạy chương trình.
 Member config module in this
 """
+import sys
+import os
 
-from score import menu_module_1
+# Thêm thư mục hiện tại vào sys.path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from score import menu_controller
 from grade_point import GradePoint
 from student import menu_module_3
 from subject import Subject
@@ -14,11 +18,11 @@ def menu():
     print("+------------------------------------------+")
     print("|        QUẢN LÝ ĐIỂM SỐ SINH VIÊN         |")
     print("+------------------------------------------+")
-    print("|1. Quản lý học kỳ                         |")
-    print("|2. Quản lý môn học                        |")
+    print("|1. Quản lý điểm số                        |")
+    print("|2. Quản lý đầu điểm                       |")
     print("|3. Quản lý sinh viên                      |")
-    print("|4. Thêm đầu điểm                          |")
-    print("|5. Thêm điểm số                           |")
+    print("|4. Quản lý môn học                        |")
+    print("|5. Quản lý học kỳ                         |")
     print("|0. Thoát                                  |")
     print("+------------------------------------------+")
 
@@ -26,7 +30,7 @@ def insert_score():
     """
     Function to add scores.
     """
-    menu_module_1()
+    menu_controller()
     
 def insert_grade_point():
     """
