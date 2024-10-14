@@ -54,10 +54,25 @@ class Student:
 
 # Danh sách lưu trữ các đối tượng sinh viên
 students = [
-    # Student('SV001', 'Nguyen Van A', '10/05/2000', 'nguyenvana@example.com', 'CNTT1', 'Công nghệ thông tin'),
-    # Student('SV002', 'Tran Thi B', '12/08/2001', 'tranthib@example.com', 'KT2', 'Kinh tế'),
-    # Student('SV003', 'Le Van C', '22/03/1999', 'levanc@example.com', 'CNTT2', 'Công nghệ thông tin')
+    Student('PH00001', 'Nguyen Van A', '10/05/2000', 'nguyenvana@example.com', 'CNTT1', 'Công nghệ thông tin'),
+    Student('PH00002', 'Tran Thi B', '12/08/2001', 'tranthib@example.com', 'KT2', 'Kinh tế'),
+    Student('PH00003', 'Le Van C', '22/03/1999', 'levanc@example.com', 'CNTT2', 'Công nghệ thông tin')
 ]
+
+
+def cap_nhat_file_csv(file_name='students.csv'):
+    try:
+        with open(file_name, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            # Ghi tiêu đề các cột
+            writer.writerow(['Mã SV', 'Họ và Tên', 'Ngày sinh', 'Email', 'Lớp', 'Bộ môn'])
+            
+            # Ghi dữ liệu sinh viên
+            for student in students:
+                writer.writerow([student.ma_sinh_vien, student.ten, student.ngay_sinh, student.email, student.lop, student.bo_mon])
+        print(f"Dữ liệu đã được cập nhật vào file '{file_name}'.")
+    except Exception as e:
+        print(f"Đã xảy ra lỗi khi cập nhật file CSV: {e}")
 
 # Chức năng 1: Hiển thị danh sách sinh viên
 def chuc_nang_1():
@@ -194,80 +209,219 @@ def chuc_nang_2():
             sinh_vien_moi = Student(ma_sinh_vien, ten, ngay_sinh, email, lop, bo_mon)
             students.append(sinh_vien_moi)
             print(f"Đã thêm sinh viên {ten}.")
+            cap_nhat_file_csv()  # Cập nhật file CSV sau khi thêm sinh viên mới
         else:
             print("Thêm mới sinh viên đã bị hủy.")
         break
 
 
 # Chức năng 3: Tìm kiếm sinh viên theo mã
+# def chuc_nang_3():
+#     print('Tìm kiếm sinh viên:')
+#     ma_sv = input("Nhập mã sinh viên cần tìm: ").strip()
+#     found = False
+#     for student in students:
+#         if student.ma_sinh_vien == ma_sv:
+#             print(f"Tìm thấy sinh viên: {student.ten}, Ngày sinh: {student.ngay_sinh}, Email: {student.email}, Lớp: {student.lop}, Bộ môn: {student.bo_mon}")
+#             found = True
+#             break
+#     if not found:
+#         print(f"Không tìm thấy sinh viên với mã {ma_sv}.")
+
+import re
+
+# Hàm tìm kiếm sinh viên bằng Regex
+import re
+
+# Hàm tìm kiếm sinh viên
 def chuc_nang_3():
-    print('Tìm kiếm sinh viên:')
-    ma_sv = input("Nhập mã sinh viên cần tìm: ").strip()
-    found = False
+    print("Tìm kiếm sinh viên:")
+    while True:
+        lua_chon = input("Bạn muốn tìm kiếm theo (1) Tên, (2) Mã sinh viên, (3) Email: ").strip()
+        
+        if lua_chon == '1':
+            while True:
+                pattern = input("Nhập tên cần tìm: ").strip()
+                if pattern:  # Kiểm tra xem pattern có trống không
+                    ket_qua = tim_kiem_theo_regex('ten', pattern)
+                    if ket_qua:
+                        break
+                    else:
+                        print("Không tìm thấy sinh viên nào phù hợp với tên đã nhập.")
+                        if not tiep_tuc_hoac_quay_lai():
+                            return
+                else:
+                    print("Tên tìm kiếm không được để trống. Vui lòng nhập lại.")
+        elif lua_chon == '2':
+            while True:
+                pattern = input("Nhập mã sinh viên cần tìm (PH12345): ").strip()
+                if pattern:
+                    ket_qua = tim_kiem_theo_regex('ma_sinh_vien', pattern)
+                    if ket_qua:
+                        break
+                    else:
+                        print("Không tìm thấy sinh viên nào phù hợp với mã sinh viên đã nhập.")
+                        if not tiep_tuc_hoac_quay_lai():
+                            return
+                else:
+                    print("Mã sinh viên tìm kiếm không được để trống. Vui lòng nhập lại.")
+        elif lua_chon == '3':
+            while True:
+                pattern = input("Nhập email cần tìm (khanlv@gmail.com): ").strip()
+                if pattern:
+                    ket_qua = tim_kiem_theo_regex('email', pattern)
+                    if ket_qua:
+                        break
+                    else:
+                        print("Không tìm thấy sinh viên nào phù hợp với email đã nhập.")
+                        if not tiep_tuc_hoac_quay_lai():
+                            return
+                else:
+                    print("Email tìm kiếm không được để trống. Vui lòng nhập lại.")
+        else:
+            print("Lựa chọn không hợp lệ. Vui lòng chọn 1, 2 hoặc 3.")
+            continue  # Tiếp tục vòng lặp nếu lựa chọn không hợp lệ
+
+        break  # Thoát vòng lặp chính nếu tìm thấy kết quả
+
+    # Hiển thị kết quả nếu tìm thấy sinh viên
+    if ket_qua:
+        print(f"Tìm thấy {len(ket_qua)} sinh viên:")
+        print(f"{'Mã SV':<10} {'Họ và Tên':<20} {'Ngày sinh':<12} {'Email':<30} {'Lớp':<8} {'Bộ môn'}")
+        print('-' * 80)
+        for student in ket_qua:
+            print(f"{student.ma_sinh_vien:<10} {student.ten:<20} {student.ngay_sinh:<12} {student.email:<30} {student.lop:<8} {student.bo_mon}")
+    else:
+        print("Không tìm thấy sinh viên nào phù hợp.")
+
+# Hàm tìm kiếm theo thuộc tính sử dụng Regex
+def tim_kiem_theo_regex(thuoc_tinh, pattern):
+    ket_qua = []
     for student in students:
-        if student.ma_sinh_vien == ma_sv:
-            print(f"Tìm thấy sinh viên: {student.ten}, Ngày sinh: {student.ngay_sinh}, Email: {student.email}, Lớp: {student.lop}, Bộ môn: {student.bo_mon}")
-            found = True
-            break
-    if not found:
-        print(f"Không tìm thấy sinh viên với mã {ma_sv}.")
+        gia_tri = getattr(student, thuoc_tinh)
+        if re.search(pattern, gia_tri, re.IGNORECASE):  # Tìm kiếm không phân biệt chữ hoa/thường
+            ket_qua.append(student)
+    return ket_qua
+
+# Hàm hỏi người dùng muốn tìm kiếm tiếp hoặc quay lại menu
+def tiep_tuc_hoac_quay_lai():
+    while True:
+        lua_chon = input("Bạn có muốn tìm kiếm tiếp không? (Y để tiếp tục, N để quay lại menu): ").strip().upper()
+        if lua_chon == 'Y':
+            return True  # Tiếp tục tìm kiếm
+        elif lua_chon == 'N':
+            print("Quay lại menu chính.")
+            return False  # Quay lại menu
+        else:
+            print("Lựa chọn không hợp lệ. Vui lòng chọn Y hoặc N.")
+
 
 # Chức năng 4: Cập nhật thông tin sinh viên
 def chuc_nang_4():
     print('Cập nhật thông tin sinh viên:')
-    ma_sv = input("Nhập mã sinh viên cần cập nhật: ").strip()
-    found_student = None
-    for student in students:
-        if student.ma_sinh_vien == ma_sv:
-            found_student = student
-            break
     
-    if found_student:
-        print(f"Đang cập nhật thông tin cho sinh viên: {found_student.ten}")
-        found_student.ten = input(f"Tên hiện tại: {found_student.ten}, Nhập tên mới: ").strip() or found_student.ten
-        found_student.lop = input(f"Lớp hiện tại: {found_student.lop}, Nhập lớp mới: ").strip() or found_student.lop
-        found_student.bo_mon = input(f"Bộ môn hiện tại: {found_student.bo_mon}, Nhập bộ môn mới: ").strip() or found_student.bo_mon
-
-        while True:
-            new_email = input(f"Email hiện tại: {found_student.email}, Nhập email mới: ").strip() or found_student.email
-            if validate_email(new_email):
-                found_student.email = new_email
+    while True:
+        ma_sv = input("Nhập mã sinh viên cần cập nhật: ").strip()
+        found_student = None
+        
+        # Tìm kiếm sinh viên theo mã
+        for student in students:
+            if student.ma_sinh_vien == ma_sv:
+                found_student = student
                 break
-            else:
-                print("Email không hợp lệ, vui lòng nhập lại.")
-
-        while True:
-            new_ngay_sinh = input(f"Ngày sinh hiện tại: {found_student.ngay_sinh}, Nhập ngày sinh mới (DD/MM/YYYY): ").strip() or found_student.ngay_sinh
-            if validate_ngay_sinh(new_ngay_sinh):
-                found_student.ngay_sinh = new_ngay_sinh
-                break
-            else:
-                print("Ngày sinh không hợp lệ, vui lòng nhập lại.")
-
-        print("Thông tin sinh viên đã được cập nhật.")
-    else:
-        print(f"Không tìm thấy sinh viên với mã {ma_sv}.")
+        
+        if found_student:
+            print(f"Đang cập nhật thông tin cho sinh viên: {found_student.ten}")
+            
+            # Cập nhật thông tin sinh viên
+            found_student.ten = input(f"Tên hiện tại: {found_student.ten}, Nhập tên mới (hoặc bấm Enter để giữ nguyên): ").strip() or found_student.ten
+            found_student.lop = input(f"Lớp hiện tại: {found_student.lop}, Nhập lớp mới (hoặc bấm Enter để giữ nguyên): ").strip() or found_student.lop
+            found_student.bo_mon = input(f"Bộ môn hiện tại: {found_student.bo_mon}, Nhập bộ môn mới (hoặc bấm Enter để giữ nguyên): ").strip() or found_student.bo_mon
+            
+            # Validate email
+            while True:
+                new_email = input(f"Email hiện tại: {found_student.email}, Nhập email mới (hoặc bấm Enter để giữ nguyên): ").strip() or found_student.email
+                if validate_email(new_email):
+                    found_student.email = new_email
+                    break
+                else:
+                    print("Email không hợp lệ, vui lòng nhập lại.")
+            
+            # Validate ngày sinh
+            while True:
+                new_ngay_sinh = input(f"Ngày sinh hiện tại: {found_student.ngay_sinh}, Nhập ngày sinh mới (DD/MM/YYYY hoặc bấm Enter để giữ nguyên): ").strip() or found_student.ngay_sinh
+                if validate_ngay_sinh(new_ngay_sinh):
+                    found_student.ngay_sinh = new_ngay_sinh
+                    break
+                else:
+                    print("Ngày sinh không hợp lệ, vui lòng nhập lại.")
+            
+            print("Thông tin sinh viên đã được cập nhật.")
+            cap_nhat_file_csv()
+            break  # Thoát khỏi vòng lặp sau khi cập nhật xong
+        else:
+            print(f"Không tìm thấy sinh viên với mã {ma_sv}.")
+            
+            # Hỏi người dùng muốn nhập lại hay quay lại menu
+            while True:
+                lua_chon = input("Bạn có muốn nhập lại mã sinh viên khác không? (Y để tiếp tục, N để quay lại menu): ").strip().upper()
+                if lua_chon == 'Y':
+                    break  # Cho phép nhập lại mã sinh viên khác
+                elif lua_chon == 'N':
+                    print("Quay lại menu chính.")
+                    return  # Quay lại menu chính
+                else:
+                    print("Lựa chọn không hợp lệ, vui lòng nhập lại Y hoặc N.")
 
 # Chức năng 5: Xóa sinh viên
 def chuc_nang_5():
     print('Xóa sinh viên')
+    
+    # Kiểm tra nếu danh sách sinh viên rỗng
     if len(students) == 0:
         print("Không có sinh viên nào trong danh sách để xóa.")
         return
-    ma_sv = input("Nhập mã sinh viên muốn xóa: ").strip()
-    found_student = None
+    
+    # Hiển thị danh sách sinh viên trước khi xóa
+    print("Danh sách sinh viên hiện có:")
+    print(f"{'Mã SV':<10} {'Họ và Tên':<20} {'Ngày sinh':<12} {'Email':<30} {'Lớp':<8} {'Bộ môn'}")
+    print('-' * 80)
     for student in students:
-        if student.ma_sinh_vien == ma_sv:
-            found_student = student
-            break
-    if found_student:
-        if exit_chuc_nang3():
-            students.remove(found_student)
-            print(f"Đã xóa sinh viên {found_student.ten}.")
+        print(f"{student.ma_sinh_vien:<10} {student.ten:<20} {student.ngay_sinh:<12} {student.email:<30} {student.lop:<8} {student.bo_mon}")
+    
+    while True:
+        # Yêu cầu người dùng nhập mã sinh viên cần xóa
+        ma_sv = input("Nhập mã sinh viên muốn xóa: ").strip()
+        found_student = None
+        
+        # Tìm sinh viên có mã phù hợp
+        for student in students:
+            if student.ma_sinh_vien == ma_sv:
+                found_student = student
+                break
+        
+        # Xóa sinh viên nếu tìm thấy
+        if found_student:
+            if exit_chuc_nang3():
+                students.remove(found_student)
+                print(f"Đã xóa sinh viên {found_student.ten}.")
+                cap_nhat_file_csv()
+            else:
+                print("Xóa sinh viên đã bị hủy.")
+            break  # Thoát khỏi vòng lặp sau khi hoàn thành xóa
         else:
-            print("Xóa sinh viên đã bị hủy.")
-    else:
-        print(f"Không tìm thấy sinh viên với mã {ma_sv}.")
+            print(f"Không tìm thấy sinh viên với mã {ma_sv}.")
+            
+            # Cho người dùng lựa chọn xóa tiếp hoặc quay lại menu
+            while True:
+                lua_chon = input("Bạn có muốn xóa sinh viên khác không? (Y để tiếp tục, N để quay lại menu): ").strip().upper()
+                if lua_chon == 'Y':
+                    break  # Cho phép nhập lại mã sinh viên khác
+                elif lua_chon == 'N':
+                    print("Quay lại menu chính.")
+                    return  # Quay lại menu chính
+                else:
+                    print("Lựa chọn không hợp lệ. Vui lòng nhập lại Y hoặc N.")
 
 # # Hàm validate ngày sinh
 # def validate_ngay_sinh(ngay_sinh):
