@@ -5,7 +5,7 @@ Sử dụng unittest để kiểm tra các phương thức và lớp trong modul
 """
 
 import unittest
-from my_package.student import Student
+from my_package.modules.student import Student
 
 class TestStudent(unittest.TestCase):
     """

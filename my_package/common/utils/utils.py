@@ -4,7 +4,6 @@ tái sử dụng trong toàn dự án.
 ------------------------------------"""
 from datetime import datetime
 import re
-from constants import value_dau_diem
 
 
 def check_score_input(prompt):

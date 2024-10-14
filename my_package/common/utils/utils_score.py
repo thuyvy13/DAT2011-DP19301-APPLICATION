@@ -8,6 +8,11 @@ tái sử dụng trong toàn dự án.
 from datetime import datetime
 import re
 
+
+"""
+    @author: Do Thuy Vy
+    description: Nhiều hàm extension để xử lý dữ liệu điểm số
+"""
 def display_menu(options):
     """Hiển thị menu lựa chọn."""
     print("\nChọn đầu điểm để nhập:")

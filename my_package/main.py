@@ -1,12 +1,21 @@
 import sys
 import os
 
+from my_package.modules.grade_point.grade_point import grade_point
+from my_package.modules.semester.semester import hien_thi_menu
+from my_package.modules.student.student import menu_module_3
+from my_package.modules.subject.manh import main_module_4
+
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from score import menu_controller
-from grade_point import GradePoint
-from student import menu_module_3
-from manh import main_module4
-from semester import hien_thi_menu
+from my_package.modules.score.score import menu_controller
+
+"""
+    Chương trình quản lý thông tin học tập sinh viên
+    @author: Do Thuy Vy
+    @version: 2.0: 
+     
+"""
+
 
 def confirm_exit():
     """Hàm yêu cầu xác nhận trước khi thoát chương trình."""
@@ -14,12 +23,11 @@ def confirm_exit():
         confirmation = input("❓ Bạn có chắc chắn muốn thoát? (y/n): ").strip().lower()
         if confirmation == 'y':
             print("🚪 Thoát chương trình.")
-            return True
+            break
         elif confirmation == 'n':
             return False
         else:
             print("❌ Vui lòng chỉ nhập 'y' (có) hoặc 'n' (không).")
-
 
 def menu():
     """Hiển thị menu chính."""
@@ -38,13 +46,13 @@ def insert_score():
     menu_controller()
 
 def insert_grade_point():
-    GradePoint()
+    grade_point()
 
 def insert_student():
     menu_module_3()
 
 def insert_subject():
-    main_module4()
+    main_module_4()
 
 def insert_semester():
     hien_thi_menu()

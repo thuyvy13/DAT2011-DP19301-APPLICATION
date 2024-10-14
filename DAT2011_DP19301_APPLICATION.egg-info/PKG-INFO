@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: DAT2011-DP19301-APPLICATION
+Version: 3.12.2
+Summary: Hệ thống quản lý điểm số cho sinh viên
+Author: Đỗ Thuỳ Vy
+Author-email: contact.vyda@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.12
