@@ -101,9 +101,6 @@ def chuc_nang_0():
     print('chức năng 0')
 
 
-
-
-
 def menu_module_3():
     while True:
         print('\n ------------Quản lý sinh viên------------ ')
@@ -146,7 +143,6 @@ def menu_module_3():
             else:
                 print('thao tác bị hủy')
         else :
+            
             print('Mời bạn chọn lại chức năng (1 - 10)')
 
-#print('khanlv')
-#print("dat2011_gr2")
