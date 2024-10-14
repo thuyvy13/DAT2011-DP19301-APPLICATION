@@ -1,0 +1,44 @@
+[
+    {
+        "name": "SPRING 2023",
+        "start_date": "2023-01-10",
+        "end_date": "2023-05-20",
+        "note": "Khai giảng đầu năm."
+    },
+    {
+        "name": "SUMMER 2023",
+        "start_date": "2023-06-01",
+        "end_date": "2023-08-15",
+        "note": "Học kỳ hè."
+    },
+    {
+        "name": "FALL 2023",
+        "start_date": "2023-09-01",
+        "end_date": "2023-12-15",
+        "note": "Kết thúc năm học."
+    },
+    {
+        "name": "SPRING 2024",
+        "start_date": "2024-01-15",
+        "end_date": "2024-05-20",
+        "note": "Học kỳ mới bắt đầu."
+    },
+    {
+        "name": "SUMMER 2024",
+        "start_date": "2024-06-05",
+        "end_date": "2024-08-25",
+        "note": "Học kỳ hè tiếp theo."
+    },
+    {
+        "name": "spring",
+        "start_date": "2024-07-12",
+        "end_date": "2025",
+        "note": "nooo"
+    },
+    {
+        "name": "hi",
+        "start_date": "edwe",
+        "end_date": "adcac",
+        "note": "dced"
+    }
+]
